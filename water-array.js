@@ -3,30 +3,35 @@
 /*adding arrays to the data model, so that there are many independent drops visible at any given time
 Consider giving each drop a small, random x and y speed. What range works well for those speeds?*/
 
-var x = 230;
-var y = 220;
+var xArr = [];
+var yArr = [];
 
 function setup() {
   createCanvas(400, 400);
-  colorMode(HSB)
+	for (var index = 0; index < 100; index = index + 1) {
+    xArr[index] = random(10, width-10);
+    yArr[index] = random(10, height-10);
+  }
 }
   
 function draw() {
+	
   background(0);
   noStroke();
 
   // draw pipe
-  rect(0, 200, x, 20);
   
   // draw drip
-  ellipse(x, y, 10);
-  
+	for (var index = 0; index < 3; index = index + 1) {
+		rect(0, 200, 230, 20);
+    ellipse(xArr[index], yArr[index], 10);
+    yArr[index] = yArr[index] + 4;
+
   // down 3 pixels each frame, but maybe should be accelerating?
-  y = y + 3
-  
   // if invisible for a full “height” amount…
-  if (y > height*2) {
+  	if (yArr > height*2) {
     // reset
-    y = 220;
-  }
+    yArr = 220;
+  	}
+	}
 }
