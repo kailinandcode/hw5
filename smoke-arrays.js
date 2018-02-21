@@ -15,7 +15,7 @@ var rotations = [];
 function setup() {
   createCanvas(400, 400);
 	for (i = 0; i < 100; i +=1) {
-		yPositions[i] = random(10, height-10);
+		yPositions[i] = random(15, height-10);
 		xPositions[i] = random(10, width-10);
 		rectangles[i] = random(20, 40);
 		xSpeed[i] = random(-5, 5);
@@ -25,7 +25,7 @@ function setup() {
 }
   
 function draw() {
-  background(255);
+  background(0);
   noStroke();
 
   // draw smokestack
@@ -39,7 +39,7 @@ function draw() {
   // darker as it gets closer to 0
   
   // rotate r around (x,y)
-  translate(x, y);
+  translate(random(0,x), random(0,y));
   rotate(rotations[random(0, 10)]);
 	  
 	// reset rotation and translation
@@ -49,7 +49,7 @@ function draw() {
 	for (i = 0; i < 100; i++) {
   strokeWeight(xSpeed[i]);
 	stroke(rectangles[i], rotations[i], rotations[i]);
-	fill(xPositions[i], rectangles[i], yPositions[i]);
+	fill(xPositions[i]-i, rectangles[i]+i, yPositions[i]+i);
   rect(xPositions[i], yPositions[i], rectangles[i], rectangles[i]);
 
   xPositions[i] = xPositions[i] + xSpeed[i];
